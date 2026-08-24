@@ -1,12 +1,12 @@
 trigger:
-  - main  # Aktivoituu, kun muutoksia tehdään main-branchiin
+  - main  # Käynnistyy automaattisesti, kun main-haaraan tulee muutoksia
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'ubuntu-latest'
 
 steps:
   - task: AzureStaticWebApp@0
     inputs:
-      app_location: '/' # Missä index.html on (juurikansio)
-      output_location: '' # Jätetään tyhjäksi pelkälle HTML:lle
-      azure_static_web_apps_api_token: '66ba9e11ba9b4388e8f091e0fcab58ef4c16dae70d248063a3a71556bfaabeef07-f5f53ad1-a468-4a4d-bb6f-cc7c9f09849601001030c6f54610'
+      app_location: '/'        # Missä index.html on (juurikansio)
+      output_location: ''      # Jätetään tyhjäksi pelkälle HTML-sivulle
+      azure_static_web_apps_api_token: $(SWA_TOKEN) # Viittaa äsken luomaamme salaiseen muuttujaan
