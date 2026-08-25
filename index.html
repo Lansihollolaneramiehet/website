@@ -13,18 +13,30 @@ section{max-width:1100px;margin:auto;padding:50px 20px}
 .card{background:white;border-radius:10px;padding:25px;margin:15px 0;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 footer{background:#2f3b24;color:white;text-align:center;padding:20px}
 .btn{display:inline-block;background:#556b2f;color:white;padding:12px 18px;border-radius:6px;text-decoration:none}
+
+.gallery-img{width:100%;height:220px;object-fit:cover;border-radius:10px}
+.logo{width:120px;height:120px;border-radius:50%;background:#d9c8a1;display:flex;align-items:center;justify-content:center;margin:0 auto 20px auto;font-size:52px}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+form input,form textarea{width:100%;padding:10px;margin:8px 0;border:1px solid #bbb;border-radius:6px}
+@media(max-width:768px){.hero-grid{grid-template-columns:1fr}}
+
+.mobile-toggle{display:none;background:#6b4f2a;color:#fff;padding:12px;text-align:center;cursor:pointer}
+.video-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden}
+.video-container iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+@media(max-width:768px){nav{display:none}nav.show{display:block}nav a{display:block;padding:10px 0}.mobile-toggle{display:block}}
 </style>
 </head>
 <body>
 <header>
-<h1>Länsi-Hollolan Erämiehet ry</h1>
+<div class="logo">🦌</div><h1>Länsi-Hollolan Erämiehet ry</h1>
 <p>Metsästystä, riistanhoitoa ja luonnossa liikkumista yhdessä.</p>
-<a class="btn" href="#yhteystiedot">Liity mukaan</a>
+<a class="btn" href="#jasenhakemus">Liity mukaan</a>
 </header>
-<nav>
+<div class="mobile-toggle" onclick="document.getElementById('mainnav').classList.toggle('show')">☰ Valikko</div><nav id="mainnav">
 <a href="#seura">Seura</a>
 <a href="#toiminta">Toiminta</a>
 <a href="#ajankohtaista">Ajankohtaista</a>
+<a href="#galleria">Videogalleria</a>
 <a href="#yhteystiedot">Yhteystiedot</a>
 </nav>
 <section id="seura">
@@ -50,9 +62,51 @@ footer{background:#2f3b24;color:white;text-align:center;padding:20px}
 <p>Lisää tähän tulevat tapahtumat, kokoukset ja tiedotteet.</p>
 </div>
 </section>
+
+
+<section id="kuvat">
+<div class="card">
+<h2>Kuvagalleria</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px;">
+<img loading="lazy" class="gallery-img" src="https://images.unsplash.com/photo-1501706362039-c6e80948e4d1?auto=format&fit=crop&w=800&q=80" alt="Metsä" />
+<img loading="lazy" class="gallery-img" src="https://images.unsplash.com/photo-1473773508845-188df298d2d1?auto=format&fit=crop&w=800&q=80" alt="Luonto" />
+<img loading="lazy" class="gallery-img" src="https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80" alt="Metsäpolku" />
+</div>
+</div>
+</section>
+
+<section id="jasenhakemus">
+<div class="card">
+<h2>Jäsenhakemus</h2>
+<form action="https://formspree.io/f/mnpakbky" method="POST">
+<input type="hidden" name="_subject" value="Uusi jäsenhakemus Länsi-Hollolan Erämiehet ry">
+<input type="hidden" name="_next" value="https://www.lansihollolaneramiehet.fi/kiitos.html">
+<input type="text" name="nimi" placeholder="Nimi" required>
+<input type="email" name="sahkoposti" placeholder="Sähköposti">
+<input type="tel" name="puhelin" placeholder="Puhelin" required>
+<textarea name="esittely" rows="5" placeholder="Kerro hieman itsestäsi" required></textarea>
+<p>Jäsenhakemus lähetetään seuran sähköpostiin.</p><input type="submit" value="Lähetä hakemus">
+</form>
+</div>
+</section>
+<section id="galleria">
+<div class="card">
+<h2>Videogalleria</h2>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;">
+<div class="video-container"><iframe src="https://www.youtube.com/embed/mW0-Hpc7iMM" title="Länsi-Hollolan Erämiehet video 1" frameborder="0" allowfullscreen></iframe></div>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/uX5pv7nVOxw" title="Länsi-Hollolan Erämiehet video 2" frameborder="0" allowfullscreen></iframe></div>
+</div>
+</div>
+</section>
 <section id="yhteystiedot">
 <div class="card">
 <h2>Yhteystiedot</h2>
+<p><strong>Puheenjohtaja:</strong> Olli Kaikkonen</p>
+<p><strong>Puhelin:</strong> <a href="tel:+358500200005">+358 500200005</a></p>
+<p><strong>Sähköposti:</strong> <a href="mailto:lansihollolaneramiehet@gmail.com">lansihollolaneramiehet@gmail.com</a></p>
+<p><strong>Sihteeri:</strong> Satu Siikaniemi</p>
+<p><strong>Puhelin:</strong> <a href="tel:+358443634968">+358 443634968</a></p>
+<p><strong>Sähköposti:</strong> <a href="mailto:lansihollolaneramiehet@gmail.com">lansihollolaneramiehet@gmail.com</a></p>
 <p>Sähköposti: info@lansihollolaneramiehet.fi</p>
 <p>Puhelin: 040 123 4567</p>
 <p>Osoite: Hollola, Suomi</p>
