@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fi">
 <head>
   <meta charset="UTF-8">
@@ -26,6 +26,34 @@
       nav a { display: block; padding: 10px 0; }
       .mobile-toggle { display: block; }
     }
+
+    /* Evästehallinta ja suostumusta odottavat upotukset */
+    .consent-embed { width: 100%; min-height: 260px; position: relative; background: #eef1e9; border: 2px dashed #9aa58d; border-radius: 8px; overflow: hidden; }
+    .consent-placeholder { min-height: 260px; padding: 24px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-sizing: border-box; }
+    .consent-placeholder p { max-width: 620px; }
+    .consent-iframe { display: none; width: 100%; min-height: 315px; border: 0; }
+    .consent-embed.media-loaded .consent-placeholder { display: none; }
+    .consent-embed.media-loaded .consent-iframe { display: block; }
+    .map-container .consent-iframe { min-height: 450px; }
+    .cookie-overlay { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: flex-end; justify-content: center; padding: 20px; background: rgba(0,0,0,.58); }
+    .cookie-overlay[hidden] { display: none; }
+    .cookie-dialog { width: min(760px,100%); max-height: calc(100vh - 40px); overflow-y: auto; background: #fff; color: #26301e; padding: 24px; border-radius: 12px; box-shadow: 0 12px 45px rgba(0,0,0,.35); }
+    .cookie-dialog h2 { margin-top: 0; }
+    .cookie-category { margin: 12px 0; padding: 14px; background: #f4f0e6; border: 1px solid #c9cfc0; border-radius: 8px; }
+    .cookie-category-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .cookie-category-row p { margin: 5px 0 0; }
+    .cookie-switch { display: flex; gap: 8px; align-items: center; flex-shrink: 0; font-weight: bold; }
+    .cookie-switch input { width: 22px; height: 22px; accent-color: #556b2f; }
+    .cookie-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 18px; }
+    .cookie-button, .cookie-settings-button, .consent-load-media { min-height: 44px; padding: 10px 16px; font: inherit; font-weight: bold; border: 2px solid #556b2f; border-radius: 6px; cursor: pointer; }
+    .cookie-button.primary, .consent-load-media, .cookie-settings-button { background: #556b2f; color: #fff; }
+    .cookie-button.secondary { background: #fff; color: #2f3b24; }
+    .cookie-settings-button { position: fixed; right: 12px; bottom: 12px; z-index: 9998; box-shadow: 0 3px 12px rgba(0,0,0,.25); }
+    .cookie-button:focus-visible, .cookie-settings-button:focus-visible, .consent-load-media:focus-visible, .cookie-switch input:focus-visible { outline: 3px solid #f6bd16; outline-offset: 3px; }
+    .privacy-table { width: 100%; border-collapse: collapse; }
+    .privacy-table th, .privacy-table td { border: 1px solid #c9cfc0; padding: 10px; text-align: left; vertical-align: top; }
+    .privacy-table th { background: #eef1e9; }
+    @media (max-width: 680px) { .cookie-overlay { padding: 0; } .cookie-dialog { max-height: 92vh; border-radius: 12px 12px 0 0; } .cookie-category-row { align-items: flex-start; flex-direction: column; } .cookie-actions { flex-direction: column-reverse; } .cookie-button { width: 100%; } }
   </style>
 </head>
 <body>
@@ -43,6 +71,7 @@
     <a href="#toiminta">Toiminta</a>
     <a href="#ajankohtaista">Ajankohtaista</a>
     <a href="#videot">Videot</a>
+    <a href="#kartta">Kartta</a>
     <a href="#yhteystiedot">Yhteystiedot</a>
   </nav>
 
@@ -95,12 +124,29 @@
     <div class="card">
       <h2>Videot</h2>
       <div class="video-grid">
-        <div class="video-container"><iframe src="https://www.youtube.com/embed/mW0-Hpc7iMM?si=HPkqwHceQk4LBgxQ" title="YouTube-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-        <div class="video-container"><iframe src="https://www.youtube.com/embed/uX5pv7nVOxw?si=ZLMARy8MPqKcET9H" title="YouTube-video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+        <div class="consent-embed" data-consent-category="external-media">
+          <div class="consent-placeholder"><h3>YouTube-video</h3><p>Video ladataan YouTubesta vasta, kun hyväksyt ulkoisen median. Tietoja voidaan tällöin siirtää Googlelle.</p><button type="button" class="consent-load-media">Hyväksy ulkoinen media ja näytä video</button></div>
+          <iframe class="consent-iframe" title="YouTube-video 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <div class="consent-embed" data-consent-category="external-media">
+          <div class="consent-placeholder"><h3>YouTube-video</h3><p>Video ladataan YouTubesta vasta, kun hyväksyt ulkoisen median. Tietoja voidaan tällöin siirtää Googlelle.</p><button type="button" class="consent-load-media">Hyväksy ulkoinen media ja näytä video</button></div>
+          <iframe class="consent-iframe" title="YouTube-video 2" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
       </div>
     </div>
   </section>
 
+
+  <section id="kartta">
+    <div class="card">
+      <h2>Kartta</h2>
+      <div class="consent-embed map-container" data-consent-category="external-media">
+        <div class="consent-placeholder"><h3>Google Maps -kartta</h3><p>Kartta ladataan Google Mapsista vasta, kun hyväksyt ulkoisen median. Tietoja voidaan tällöin siirtää Googlelle.</p><button type="button" class="consent-load-media">Hyväksy ulkoinen media ja näytä kartta</button></div>
+        <iframe class="consent-iframe" title="Hollola Google Maps -kartalla" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </div>
+  </section>
+ 
   <section id="yhteystiedot">
     <div class="card">
       <h2>Yhteystiedot</h2>
@@ -115,6 +161,52 @@
 
   <footer>
     <p>© 2026 Länsi-Hollolan Erämiehet ry</p>
+    <p><a href="tietosuojaseloste.html" style="color:white">Tietosuoja ja evästeet</a></p>
   </footer>
+
+  <button type="button" id="open-cookie-settings" class="cookie-settings-button" aria-haspopup="dialog">Evästeasetukset</button>
+  <div id="cookie-consent-overlay" class="cookie-overlay" hidden>
+    <section id="cookie-consent-dialog" class="cookie-dialog" role="dialog" aria-modal="true" aria-labelledby="cookie-dialog-title" tabindex="-1">
+      <h2 id="cookie-dialog-title">Evästeasetukset</h2>
+      <p>Käytämme välttämätöntä selaintallennusta valintojesi muistamiseen. Suostumuksellasi käytämme lisäksi analytiikkaa sekä lataamme YouTube-videoita ja Google Maps -karttoja.</p>
+      <div class="cookie-category"><div class="cookie-category-row"><div><strong>Välttämättömät</strong><p>Tarvitaan suostumusvalinnan muistamiseen ja sivuston perustoimintoihin.</p></div><label class="cookie-switch"><input type="checkbox" checked disabled><span>Pakollinen</span></label></div></div>
+      <div class="cookie-category"><div class="cookie-category-row"><div><strong>Analytiikka</strong><p>Google Analytics ladataan vain tällä suostumuksella. Mainontaan liittyvät valinnat pidetään estettyinä.</p></div><label class="cookie-switch"><input type="checkbox" id="consent-analytics"><span>Salli</span></label></div></div>
+      <div class="cookie-category"><div class="cookie-category-row"><div><strong>Ulkoinen media</strong><p>Sallii YouTube-videoiden ja Google Maps -karttojen lataamisen.</p></div><label class="cookie-switch"><input type="checkbox" id="consent-external-media"><span>Salli</span></label></div></div>
+      <p><a href="tietosuojaseloste.html" id="cookie-privacy-link">Lue tietosuoja- ja evästeseloste</a>.</p>
+      <div class="cookie-actions"><button type="button" id="cookie-reject-all" class="cookie-button secondary">Hylkää ei-välttämättömät</button><button type="button" id="cookie-save-selection" class="cookie-button secondary">Tallenna valinnat</button><button type="button" id="cookie-accept-all" class="cookie-button primary">Hyväksy kaikki</button></div>
+    </section>
+  </div>
+
+  <script>
+  (function () {
+    "use strict";
+    const KEY = "lhe-cookie-consent", VERSION = "1.0", MAX_AGE = 180 * 86400000;
+    /* Lisää GA4-tunnus tähän, esimerkiksi G-ABC123DEF4. Tyhjänä analytiikkaa ei ladata. */
+    const GA_ID = "";
+    const overlay = document.getElementById("cookie-consent-overlay");
+    const dialog = document.getElementById("cookie-consent-dialog");
+    const analyticsBox = document.getElementById("consent-analytics");
+    const mediaBox = document.getElementById("consent-external-media");
+    let analyticsLoaded = false, previousFocus = null;
+    function storageAvailable() { try { const test=KEY+"-test"; window.localStorage.setItem(test,"1"); window.localStorage.removeItem(test); return true; } catch(e) { return false; } }
+    const canUseStorage = storageAvailable();
+    function readConsent() { try { if(!canUseStorage) return null; const c=JSON.parse(window.localStorage.getItem(KEY)); if(!c || c.version!==VERSION || !c.savedAt || Date.now()-new Date(c.savedAt).getTime()>MAX_AGE) return null; return c; } catch(e) { return null; } }
+    function saveConsent(a,m) { const c={version:VERSION,necessary:true,analytics:!!a,externalMedia:!!m,savedAt:new Date().toISOString()}; try { if(canUseStorage) window.localStorage.setItem(KEY,JSON.stringify(c)); } catch(e) {} applyConsent(c); closeDialog(); }
+    function openDialog() { const c=readConsent() || {analytics:false,externalMedia:false}; analyticsBox.checked=!!c.analytics; mediaBox.checked=!!c.externalMedia; previousFocus=document.activeElement; overlay.hidden=false; document.body.style.overflow="hidden"; setTimeout(()=>dialog.focus(),0); }
+    function closeDialog() { overlay.hidden=true; document.body.style.overflow=""; if(previousFocus && previousFocus.focus) previousFocus.focus(); }
+    function applyConsent(c) { if(c.analytics) loadAnalytics(); else disableAnalytics(); if(c.externalMedia) loadMedia(); else unloadMedia(); }
+    function loadAnalytics() { if(!GA_ID || analyticsLoaded) return; analyticsLoaded=true; window["ga-disable-"+GA_ID]=false; window.dataLayer=window.dataLayer||[]; window.gtag=window.gtag||function(){dataLayer.push(arguments);}; gtag("consent","default",{analytics_storage:"granted",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied"}); gtag("js",new Date()); gtag("config",GA_ID,{allow_google_signals:false,allow_ad_personalization_signals:false});  }
+    function disableAnalytics() { if(GA_ID) window["ga-disable-"+GA_ID]=true; if(typeof window.gtag==="function") gtag("consent","update",{analytics_storage:"denied",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied"}); document.cookie.split(";").forEach(function(v){const n=v.split("=")[0].trim(); if(n==="_ga"||n==="_gid"||n==="_gat"||n.indexOf("_ga_")===0||n.indexOf("_gat_")===0) document.cookie=n+"=; Max-Age=0; path=/; SameSite=Lax";}); }
+    function loadMedia() { document.querySelectorAll('.consent-embed[data-consent-category="external-media"]').forEach(function(box){const f=box.querySelector(".consent-iframe"); if(f && f.dataset.src && !f.src) f.src=f.dataset.src; box.classList.add("media-loaded");}); }
+    function unloadMedia() { document.querySelectorAll('.consent-embed[data-consent-category="external-media"]').forEach(function(box){const f=box.querySelector(".consent-iframe"); if(f) f.removeAttribute("src"); box.classList.remove("media-loaded");}); }
+    document.getElementById("cookie-accept-all").addEventListener("click",()=>saveConsent(true,true));
+    document.getElementById("cookie-reject-all").addEventListener("click",()=>saveConsent(false,false));
+    document.getElementById("cookie-save-selection").addEventListener("click",()=>saveConsent(analyticsBox.checked,mediaBox.checked));
+    document.getElementById("open-cookie-settings").addEventListener("click",openDialog);
+    document.getElementById("cookie-privacy-link").addEventListener("click",closeDialog);
+    document.querySelectorAll(".consent-load-media").forEach(b=>b.addEventListener("click",function(){const c=readConsent()||{analytics:false}; saveConsent(c.analytics,true);}));
+    document.addEventListener("DOMContentLoaded",function(){const c=readConsent(); if(c) applyConsent(c); else openDialog();});
+  })();
+  </script>
 </body>
 </html>
