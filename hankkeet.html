@@ -26,6 +26,14 @@
             padding: 80px 20px;
         }
 
+        .logo {
+            display: block;
+            width: 160px;
+            max-width: 45vw;
+            height: auto;
+            margin: 0 auto 20px;
+        }
+
         nav {
             background: #6b4f2a;
             padding: 12px;
@@ -73,170 +81,56 @@
             margin: 20px 0;
         }
 
-        @media (max-width:768px){
-            nav a{
-                display:block;
-                padding:8px 0;
+        @media (max-width: 768px) {
+            nav a {
+                display: block;
+                padding: 8px 0;
             }
         }
-        .cookie-overlay { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: flex-end; justify-content: center; padding: 20px; background: rgba(0,0,0,.58); }
-.cookie-overlay[hidden] { display: none; }
-.cookie-dialog { width: min(760px,100%); max-height: calc(100vh - 40px); overflow-y: auto; background: #fff; color: #26301e; padding: 24px; border-radius: 12px; box-shadow: 0 12px 45px rgba(0,0,0,.35); }
-.cookie-dialog h2 { margin-top: 0; }
-.cookie-category { margin: 12px 0; padding: 14px; background: #f4f0e6; border: 1px solid #c9cfc0; border-radius: 8px; }
-.cookie-category-row { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-.cookie-category-row p { margin: 5px 0 0; }
-.cookie-switch { display: flex; gap: 8px; align-items: center; flex-shrink: 0; font-weight: bold; }
-.cookie-switch input { width: 22px; height: 22px; accent-color: #556b2f; }
-.cookie-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px; margin-top: 18px; }
-.cookie-button, .cookie-settings-button { min-height: 44px; padding: 10px 16px; font: inherit; font-weight: bold; border: 2px solid #556b2f; border-radius: 6px; cursor: pointer; }
-.cookie-button.primary, .cookie-settings-button { background: #556b2f; color: #fff; }
-.cookie-button.secondary { background: #fff; color: #2f3b24; }
-.cookie-settings-button { position: fixed; right: 12px; bottom: 12px; z-index: 9998; box-shadow: 0 3px 12px rgba(0,0,0,.25); }
-.cookie-button:focus-visible, .cookie-settings-button:focus-visible, .cookie-switch input:focus-visible { outline: 3px solid #f6bd16; outline-offset: 3px; }
-@media (max-width:680px) { .cookie-overlay { padding: 0; } .cookie-dialog { max-height: 92vh; border-radius: 12px 12px 0 0; } .cookie-category-row { align-items: flex-start; flex-direction: column; } .cookie-actions { flex-direction: column-reverse; } .cookie-button { width: 100%; } }
-    </style>
-</head>
-<body>
 
-<header>
-    <h1>Hankkeet</h1>
-    <p>Länsi-Hollolan Erämiehet ry:n kehittämishankkeet</p>
-</header>
+        .cookie-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0,0,0,.58);
+        }
 
-<nav>
-    <a href="index.html">Etusivu</a>
-    <a href="hankkeet.html">Hankkeet</a>
-</nav>
+        .cookie-overlay[hidden] {
+            display: none;
+        }
 
-<section>
+        .cookie-dialog {
+            width: min(760px,100%);
+            max-height: calc(100vh - 40px);
+            overflow-y: auto;
+            background: #fff;
+            color: #26301e;
+            padding: 24px;
+            border-radius: 12px;
+            box-shadow: 0 12px 45px rgba(0,0,0,.35);
+        }
 
-    <div class="card">
+        .cookie-dialog h2 {
+            margin-top: 0;
+        }
 
-        <h2>Metsästysmajan ilmalämpöpumpun uusiminen</h2>
+        .cookie-category {
+            margin: 12px 0;
+            padding: 14px;
+            background: #f4f0e6;
+            border: 1px solid #c9cfc0;
+            border-radius: 8px;
+        }
 
-        <img
-            src="eu-maaseuturahasto.png"
-            alt="Euroopan unionin maaseuturahaston tunnus"
-            class="eu-logo">
+        .cookie-category-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
 
-        <div class="funding-box">
-            Euroopan unionin osarahoittama hanke.
-        </div>
-
-        <p>
-            Länsi-Hollolan Erämiehet ry on uusinut metsästysmajan
-            rikkoutuneen ilmalämpöpumpun uuden energiatehokkaan laitteen avulla.
-        </p>
-
-        <p>
-            Investoinnin tavoitteena oli varmistaa majan toimiva ja
-            energiatehokas lämmitys sekä parantaa rakennuksen
-            ympärivuotista käytettävyyttä.
-        </p>
-
-        <p>
-            Uusi ilmalämpöpumppu asennettiin kesän aikana ja se on
-            nyt käytössä metsästysmajan lämmityksessä.
-        </p>
-
-        <p>
-            Hankkeen toteuttamiseen on saatu tukea Euroopan unionin
-            osarahoittamasta maaseudun kehittämisen rahoituksesta
-            Päijänne-Leader ry:n kautta.
-        </p>
-
-        <h3>Hanketiedot</h3>
-
-        <ul>
-            <li><strong>Hanke nro:</strong> 386358</li>
-            <li><strong>Päätös nro:</strong> 697296</li>
-        </ul>
-
-    </div>
-
-</section>
-
-<footer>
-    <p>© 2026 Länsi-Hollolan Erämiehet ry</p>
-    <p>
-        <a href="index.html" style="color:white;">
-            Takaisin etusivulle
-        </a>
-    </p>
-</footer>
-    <button type="button" id="open-cookie-settings" class="cookie-settings-button" aria-haspopup="dialog">Evästeasetukset</button>
-
-<div id="cookie-consent-overlay" class="cookie-overlay" hidden>
-  <section id="cookie-consent-dialog" class="cookie-dialog" role="dialog" aria-modal="true" aria-labelledby="cookie-dialog-title" tabindex="-1">
-    <h2 id="cookie-dialog-title">Evästeasetukset</h2>
-    <p>Käytämme välttämätöntä selaintallennusta valintojesi muistamiseen. Suostumuksellasi käytämme lisäksi analytiikkaa.</p>
-
-    <div class="cookie-category">
-      <div class="cookie-category-row">
-        <div><strong>Välttämättömät</strong><p>Tarvitaan suostumusvalinnan muistamiseen ja sivuston perustoimintoihin.</p></div>
-        <label class="cookie-switch"><input type="checkbox" checked disabled><span>Pakollinen</span></label>
-      </div>
-    </div>
-
-    <div class="cookie-category">
-      <div class="cookie-category-row">
-        <div><strong>Analytiikka</strong><p>Google Analytics ladataan vain tällä suostumuksella. Mainontaan liittyvät valinnat pidetään estettyinä.</p></div>
-        <label class="cookie-switch"><input type="checkbox" id="consent-analytics"><span>Salli</span></label>
-      </div>
-    </div>
-
-    <p><a href="tietosuojaseloste.html" id="cookie-privacy-link">Lue tietosuoja- ja evästeseloste</a>.</p>
-
-    <div class="cookie-actions">
-      <button type="button" id="cookie-reject-all" class="cookie-button secondary">Hylkää ei-välttämättömät</button>
-      <button type="button" id="cookie-save-selection" class="cookie-button secondary">Tallenna valinnat</button>
-      <button type="button" id="cookie-accept-all" class="cookie-button primary">Hyväksy kaikki</button>
-    </div>
-  </section>
-</div>
-<script>
-(function () {
-  "use strict";
-
-  const KEY = "lhe-cookie-consent", VERSION = "1.0", MAX_AGE = 180 * 86400000;
-  const GA_ID = "G-QSQ8LYE78Y";
-
-  const overlay = document.getElementById("cookie-consent-overlay");
-  const dialog = document.getElementById("cookie-consent-dialog");
-  const analyticsBox = document.getElementById("consent-analytics");
-
-  let analyticsLoaded = false, previousFocus = null;
-
-  function storageAvailable() { try { const test=KEY+"-test"; window.localStorage.setItem(test,"1"); window.localStorage.removeItem(test); return true; } catch(e) { return false; } }
-  const canUseStorage = storageAvailable();
-
-  function readConsent() { try { if(!canUseStorage) return null; const c=JSON.parse(window.localStorage.getItem(KEY)); if(!c || c.version!==VERSION || !c.savedAt || Date.now()-new Date(c.savedAt).getTime()>MAX_AGE) return null; return c; } catch(e) { return null; } }
-
-  function saveConsent(a) { const old=readConsent(); const c={version:VERSION,necessary:true,analytics:!!a,externalMedia:old ? !!old.externalMedia : false,savedAt:new Date().toISOString()}; try { if(canUseStorage) window.localStorage.setItem(KEY,JSON.stringify(c)); } catch(e) {} applyConsent(c); closeDialog(); }
-
-  function openDialog() { const c=readConsent() || {analytics:false}; analyticsBox.checked=!!c.analytics; previousFocus=document.activeElement; overlay.hidden=false; document.body.style.overflow="hidden"; setTimeout(()=>dialog.focus(),0); }
-
-  function closeDialog() { overlay.hidden=true; document.body.style.overflow=""; if(previousFocus && previousFocus.focus) previousFocus.focus(); }
-
-  function applyConsent(c) { if(c.analytics) loadAnalytics(); else disableAnalytics(); }
-
-  function loadAnalytics() { if (!GA_ID || analyticsLoaded) return; analyticsLoaded = true; window["ga-disable-" + GA_ID] = false; const script = document.createElement("script"); script.async = true; script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID); document.head.appendChild(script); window.dataLayer = window.dataLayer || []; window.gtag = window.gtag || function(){dataLayer.push(arguments);}; gtag("consent","default",{analytics_storage:"granted",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied"}); gtag("js",new Date()); gtag("config",GA_ID,{allow_google_signals:false,allow_ad_personalization_signals:false}); }
-
-  function disableAnalytics() { if(GA_ID) window["ga-disable-"+GA_ID]=true; if(typeof window.gtag==="function") gtag("consent","update",{analytics_storage:"denied",ad_storage:"denied",ad_user_data:"denied",ad_personalization:"denied"}); document.cookie.split(";").forEach(function(v){const n=v.split("=")[0].trim(); if(n==="_ga"||n==="_gid"||n==="_gat"||n.indexOf("_ga_")===0||n.indexOf("_gat_")===0) document.cookie=n+"=; Max-Age=0; path=/; SameSite=Lax";}); }
-
-  document.getElementById("cookie-accept-all").addEventListener("click",()=>saveConsent(true));
-  document.getElementById("cookie-reject-all").addEventListener("click",()=>saveConsent(false));
-  document.getElementById("cookie-save-selection").addEventListener("click",()=>saveConsent(analyticsBox.checked));
-  document.getElementById("open-cookie-settings").addEventListener("click",openDialog);
-  document.getElementById("cookie-privacy-link").addEventListener("click",closeDialog);
-
-  document.addEventListener("DOMContentLoaded",function(){
-    const c=readConsent();
-    if(c) applyConsent(c);
-    else openDialog();
-  });
-})();
-</script>
-</body>
-</html>
+        .cookie-category-row
