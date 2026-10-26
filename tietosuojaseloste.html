@@ -1,204 +1,618 @@
 <!DOCTYPE html>
 <html lang="fi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tietosuoja ja evästeet</title>
- 
-<style>
-body{
-max-width:1000px;
-margin:auto;
-padding:30px;
-font-family:Arial,sans-serif;
-line-height:1.7;
-background:#f4f0e6;
-color:#2f3b24;
-}
- 
-.card{
-background:white;
-padding:30px;
-border-radius:10px;
-box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
- 
-a.button{
-display:inline-block;
-margin-top:20px;
-background:#556b2f;
-color:white;
-padding:12px 18px;
-border-radius:6px;
-text-decoration:none;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-table{
-width:100%;
-border-collapse:collapse;
-margin-top:20px;
-}
- 
-th,
-td{
-border:1px solid #ccc;
-padding:10px;
-text-align:left;
-vertical-align:top;
-}
- 
-th{
-background:#eef1e9;
-}
+  <title>Tietosuoja ja evästeet | Länsi-Hollolan Erämiehet ry</title>
 
-</style>
+  <meta name="description" content="Länsi-Hollolan Erämiehet ry:n tietosuoja- ja evästeseloste.">
+
+  <link rel="icon" href="Logo.png">
+
+  <style>
+    body {
+      max-width: 1000px;
+      margin: auto;
+      padding: 30px;
+      font-family: Arial, sans-serif;
+      line-height: 1.7;
+      background: #f4f0e6;
+      color: #2f3b24;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.1);
+    }
+
+    a.button {
+      display: inline-block;
+      margin-top: 20px;
+      background: #556b2f;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background: #eef1e9;
+    }
+
+    .table-wrapper {
+      width: 100%;
+      overflow-x: auto;
+    }
+
+    .cookie-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 10000;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.58);
+    }
+
+    .cookie-overlay[hidden] {
+      display: none;
+    }
+
+    .cookie-dialog {
+      width: min(760px, 100%);
+      max-height: calc(100vh - 40px);
+      overflow-y: auto;
+      background: #fff;
+      color: #26301e;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 12px 45px rgba(0,0,0,.35);
+      box-sizing: border-box;
+    }
+
+    .cookie-dialog h2 {
+      margin-top: 0;
+    }
+
+    .cookie-category {
+      margin: 12px 0;
+      padding: 14px;
+      background: #f4f0e6;
+      border: 1px solid #c9cfc0;
+      border-radius: 8px;
+    }
+
+    .cookie-category-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cookie-category-row p {
+      margin: 5px 0 0;
+    }
+
+    .cookie-switch {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-shrink: 0;
+      font-weight: bold;
+    }
+
+    .cookie-switch input {
+      width: 22px;
+      height: 22px;
+      accent-color: #556b2f;
+    }
+
+    .cookie-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .cookie-button,
+    .cookie-settings-button {
+      min-height: 44px;
+      padding: 10px 16px;
+      font: inherit;
+      font-weight: bold;
+      border: 2px solid #556b2f;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .cookie-button.primary,
+    .cookie-settings-button {
+      background: #556b2f;
+      color: #fff;
+    }
+
+    .cookie-button.secondary {
+      background: #fff;
+      color: #2f3b24;
+    }
+
+    .cookie-settings-button {
+      position: fixed;
+      right: 12px;
+      bottom: 12px;
+      z-index: 9998;
+      box-shadow: 0 3px 12px rgba(0,0,0,.25);
+    }
+
+    .cookie-button:focus-visible,
+    .cookie-settings-button:focus-visible,
+    .cookie-switch input:focus-visible {
+      outline: 3px solid #f6bd16;
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 680px) {
+      body {
+        padding: 15px;
+      }
+
+      .card {
+        padding: 20px;
+      }
+
+      .cookie-overlay {
+        padding: 0;
+      }
+
+      .cookie-dialog {
+        max-height: 92vh;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .cookie-category-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .cookie-actions {
+        flex-direction: column-reverse;
+      }
+
+      .cookie-button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
+
 <body>
- 
-<div class="card">
 
-<h2>Tietosuoja- ja evästeseloste</h2>
- 
-<p><strong>Rekisterinpitäjä:</strong> Länsi-Hollolan Erämiehet ry, Hollola, Suomi</p>
- 
-<p>
-<strong>Tietosuoja-asioiden yhteydenotot:</strong>
-<a href="mailto:admin@lansihollolaneramiehet.fi">
-admin@lansihollolaneramiehet.fi
-</a>
-</p>
- 
-<h3>Selosteen soveltamisala</h3>
- 
-<p>
-Seloste koskee tämän verkkosivuston käyttöä,
-suostumusvalintojen tallentamista,
-käytön analytiikkaa sekä
-YouTube- ja Google Maps -upotuksia.
-</p>
- 
-<h3>Käsiteltävät tiedot ja käyttötarkoitukset</h3>
- 
-<p>
-Suostumuksesta ja käytettävästä palvelusta riippuen voidaan käsitellä
-IP-osoitetta,
-selain- ja laitetietoja,
-vierailtuja sivuja,
-vierailun ajankohtaa ja kestoa,
-sivustolle johtanutta osoitetta,
-eväste- tai muita tunnisteita sekä
-käyttäjän suostumusvalintoja.
-Tietoja käytetään sivuston tekniseen toimintaan,
-tietoturvaan,
-suostumusvalintojen muistamiseen,
-käytön tilastointiin sekä
-ulkoisen mediasisällön näyttämiseen.
-</p>
- 
-<h3>Käsittelyn oikeusperuste</h3>
- 
-<p>
-Välttämätöntä selaintallennusta käytetään käyttäjän valintojen muistamiseen.
-Google Analytics sekä YouTube- ja Google Maps -sisällöt ladataan vain käyttäjän suostumuksella.
-Sivuston muu sisältö toimii ilman ei-välttämättömien käyttötarkoitusten hyväksymistä.
-</p>
- 
-<h3>Evästeet ja tallennettavat tiedot</h3>
+  <div class="card">
 
-<table>
-<thead>
-<tr>
-<th>Palvelu tai tallenne</th>
-<th>Tarkoitus</th>
-<th>Luokka</th>
-<th>Säilytys</th>
-</tr>
-</thead>
- 
-<tbody>
- 
-<tr>
-<td>Evästeasetusten tallennus</td>
-<td>Käyttäjän evästevalintojen muistaminen</td>
-<td>Välttämätön</td>
-<td>Enintään 180 päivää tai selaintietojen poistamiseen asti</td>
-</tr>
- 
-<tr>
-<td>Google Analytics</td>
-<td>Sivuston käytön tilastointi ja kehittäminen</td>
-<td>Analytiikka</td>
-<td>Googlen käytäntöjen mukaisesti</td>
-</tr>
- 
-<tr>
-<td>YouTube</td>
-<td>Videoiden näyttäminen</td>
-<td>Ulkoinen media</td>
-<td>Googlen ja YouTuben käytäntöjen mukaisesti</td>
-</tr>
- 
-<tr>
-<td>Google Maps</td>
-<td>Kartan näyttäminen</td>
-<td>Ulkoinen media</td>
-<td>Googlen käytäntöjen mukaisesti</td>
-</tr>
- 
-</tbody>
-</table>
- 
-<h3>Tietojen vastaanottajat ja siirrot</h3>
- 
-<p>
-Sivuston tekniset palveluntarjoajat voivat käsitellä tietoja palvelun tuottamiseksi.
-Suostumuksen perusteella tietoja voi siirtyä Google Analytics-,
-YouTube- ja Google Maps -palveluihin.
-</p>
- 
-<h3>Suostumuksen muuttaminen</h3>
- 
-<p>
-Valintoja voi muuttaa milloin tahansa sivuston
-"Evästeasetukset" -painikkeesta.
-</p>
- 
-<h3>Rekisteröidyn oikeudet</h3>
- 
-<ul>
-<li>saada tietoa tietojensa käsittelystä</li>
-<li>tarkastaa tiedot</li>
-<li>oikaista tiedot</li>
-<li>pyytää tietojen poistamista</li>
-<li>vastustaa käsittelyä</li>
-<li>peruuttaa suostumus</li>
-<li>tehdä valitus tietosuojaviranomaiselle</li>
-</ul>
- 
-<p>
-Tietosuojaa koskevat pyynnöt voi lähettää osoitteeseen
-<a href="mailto:admin@lansihollolaneramiehet.fi">
-admin@lansihollolaneramiehet.fi
-</a>.
-</p>
- 
-<h3>Tietoturva</h3>
- 
-<p>
-Tietoja suojataan asianmukaisilla teknisillä ja organisatorisilla
-toimenpiteillä.
-</p>
- 
-<p>
-<strong>Seloste päivitetty:</strong> 1.10.2026
-</p>
+    <h1>Tietosuoja- ja evästeseloste</h1>
 
+    <p><strong>Rekisterinpitäjä:</strong> Länsi-Hollolan Erämiehet ry, Hollola, Suomi</p>
 
-<a class="button" href="index.html">
-← Takaisin etusivulle
-</a>
- 
-</div>
- 
+    <p>
+      <strong>Tietosuoja-asioiden yhteydenotot:</strong>
+      <a href="mailto:admin@lansihollolaneramiehet.fi">admin@lansihollolaneramiehet.fi</a>
+    </p>
+
+    <h2>Selosteen soveltamisala</h2>
+
+    <p>
+      Seloste koskee tämän verkkosivuston käyttöä, suostumusvalintojen
+      tallentamista, käytön analytiikkaa sekä YouTube- ja Google Maps
+      -upotuksia.
+    </p>
+
+    <h2>Käsiteltävät tiedot ja käyttötarkoitukset</h2>
+
+    <p>
+      Suostumuksesta ja käytettävästä palvelusta riippuen voidaan käsitellä
+      IP-osoitetta, selain- ja laitetietoja, vierailtuja sivuja, vierailun
+      ajankohtaa ja kestoa, sivustolle johtanutta osoitetta, eväste- tai
+      muita tunnisteita sekä käyttäjän suostumusvalintoja.
+    </p>
+
+    <p>
+      Tietoja käytetään sivuston tekniseen toimintaan, tietoturvaan,
+      suostumusvalintojen muistamiseen, käytön tilastointiin sekä ulkoisen
+      mediasisällön näyttämiseen.
+    </p>
+
+    <h2>Käsittelyn oikeusperuste</h2>
+
+    <p>
+      Välttämätöntä selaintallennusta käytetään käyttäjän valintojen
+      muistamiseen. Google Analytics sekä YouTube- ja Google Maps -sisällöt
+      ladataan vain käyttäjän suostumuksella. Sivuston muu sisältö toimii
+      ilman ei-välttämättömien käyttötarkoitusten hyväksymistä.
+    </p>
+
+    <h2>Evästeet ja tallennettavat tiedot</h2>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Palvelu tai tallenne</th>
+            <th>Tarkoitus</th>
+            <th>Luokka</th>
+            <th>Säilytys</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Evästeasetusten tallennus</td>
+            <td>Käyttäjän evästevalintojen muistaminen</td>
+            <td>Välttämätön</td>
+            <td>Enintään 180 päivää tai selaintietojen poistamiseen asti</td>
+          </tr>
+
+          <tr>
+            <td>Google Analytics</td>
+            <td>Sivuston käytön tilastointi ja kehittäminen</td>
+            <td>Analytiikka</td>
+            <td>Googlen käytäntöjen mukaisesti</td>
+          </tr>
+
+          <tr>
+            <td>YouTube</td>
+            <td>Videoiden näyttäminen</td>
+            <td>Ulkoinen media</td>
+            <td>Googlen ja YouTuben käytäntöjen mukaisesti</td>
+          </tr>
+
+          <tr>
+            <td>Google Maps</td>
+            <td>Kartan näyttäminen</td>
+            <td>Ulkoinen media</td>
+            <td>Googlen käytäntöjen mukaisesti</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Tietojen vastaanottajat ja siirrot</h2>
+
+    <p>
+      Sivuston tekniset palveluntarjoajat voivat käsitellä tietoja palvelun
+      tuottamiseksi. Suostumuksen perusteella tietoja voi siirtyä Google
+      Analytics-, YouTube- ja Google Maps -palveluihin.
+    </p>
+
+    <h2>Suostumuksen muuttaminen</h2>
+
+    <p>
+      Valintoja voi muuttaa milloin tahansa sivuston oikeassa alakulmassa
+      näkyvästä <strong>Evästeasetukset</strong>-painikkeesta.
+    </p>
+
+    <h2>Rekisteröidyn oikeudet</h2>
+
+    <ul>
+      <li>saada tietoa tietojensa käsittelystä</li>
+      <li>tarkastaa tiedot</li>
+      <li>oikaista tiedot</li>
+      <li>pyytää tietojen poistamista</li>
+      <li>vastustaa käsittelyä</li>
+      <li>peruuttaa suostumus</li>
+      <li>tehdä valitus tietosuojaviranomaiselle</li>
+    </ul>
+
+    <p>
+      Tietosuojaa koskevat pyynnöt voi lähettää osoitteeseen
+      <a href="mailto:admin@lansihollolaneramiehet.fi">admin@lansihollolaneramiehet.fi</a>.
+    </p>
+
+    <h2>Tietoturva</h2>
+
+    <p>
+      Tietoja suojataan asianmukaisilla teknisillä ja organisatorisilla
+      toimenpiteillä.
+    </p>
+
+    <p>
+      <strong>Seloste päivitetty:</strong> 26.10.2026
+    </p>
+
+    <a class="button" href="index.html">← Takaisin etusivulle</a>
+
+  </div>
+
+  <button type="button" id="open-cookie-settings" class="cookie-settings-button" aria-haspopup="dialog">
+    Evästeasetukset
+  </button>
+
+  <div id="cookie-consent-overlay" class="cookie-overlay" hidden>
+    <section id="cookie-consent-dialog" class="cookie-dialog" role="dialog" aria-modal="true" aria-labelledby="cookie-dialog-title" tabindex="-1">
+
+      <h2 id="cookie-dialog-title">Evästeasetukset</h2>
+
+      <p>
+        Käytämme välttämätöntä selaintallennusta valintojesi muistamiseen.
+        Suostumuksellasi käytämme lisäksi analytiikkaa sekä lataamme
+        YouTube-videoita ja Google Maps -karttoja.
+      </p>
+
+      <div class="cookie-category">
+        <div class="cookie-category-row">
+          <div>
+            <strong>Välttämättömät</strong>
+            <p>Tarvitaan suostumusvalinnan muistamiseen ja sivuston perustoimintoihin.</p>
+          </div>
+
+          <label class="cookie-switch">
+            <input type="checkbox" checked disabled>
+            <span>Pakollinen</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-category">
+        <div class="cookie-category-row">
+          <div>
+            <strong>Analytiikka</strong>
+            <p>
+              Google Analytics ladataan vain tällä suostumuksella.
+              Mainontaan liittyvät valinnat pidetään estettyinä.
+            </p>
+          </div>
+
+          <label class="cookie-switch">
+            <input type="checkbox" id="consent-analytics">
+            <span>Salli</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-category">
+        <div class="cookie-category-row">
+          <div>
+            <strong>Ulkoinen media</strong>
+            <p>Sallii YouTube-videoiden ja Google Maps -karttojen lataamisen.</p>
+          </div>
+
+          <label class="cookie-switch">
+            <input type="checkbox" id="consent-external-media">
+            <span>Salli</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="cookie-actions">
+        <button type="button" id="cookie-reject-all" class="cookie-button secondary">
+          Hylkää ei-välttämättömät
+        </button>
+
+        <button type="button" id="cookie-save-selection" class="cookie-button secondary">
+          Tallenna valinnat
+        </button>
+
+        <button type="button" id="cookie-accept-all" class="cookie-button primary">
+          Hyväksy kaikki
+        </button>
+      </div>
+
+    </section>
+  </div>
+
+  <script>
+    (function () {
+      "use strict";
+
+      const KEY = "lhe-cookie-consent";
+      const VERSION = "1.0";
+      const MAX_AGE = 180 * 86400000;
+      const GA_ID = "G-7BLZ6CGC4X";
+
+      const overlay = document.getElementById("cookie-consent-overlay");
+      const dialog = document.getElementById("cookie-consent-dialog");
+      const analyticsBox = document.getElementById("consent-analytics");
+      const mediaBox = document.getElementById("consent-external-media");
+
+      let analyticsLoaded = false;
+      let previousFocus = null;
+
+      function storageAvailable() {
+        try {
+          const test = KEY + "-test";
+          window.localStorage.setItem(test, "1");
+          window.localStorage.removeItem(test);
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      const canUseStorage = storageAvailable();
+
+      function readConsent() {
+        try {
+          if (!canUseStorage) return null;
+
+          const storedValue = window.localStorage.getItem(KEY);
+          if (!storedValue) return null;
+
+          const consent = JSON.parse(storedValue);
+
+          if (
+            !consent ||
+            consent.version !== VERSION ||
+            !consent.savedAt ||
+            Date.now() - new Date(consent.savedAt).getTime() > MAX_AGE
+          ) {
+            return null;
+          }
+
+          return consent;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function saveConsent(analytics, externalMedia) {
+        const consent = {
+          version: VERSION,
+          necessary: true,
+          analytics: !!analytics,
+          externalMedia: !!externalMedia,
+          savedAt: new Date().toISOString()
+        };
+
+        try {
+          if (canUseStorage) {
+            window.localStorage.setItem(KEY, JSON.stringify(consent));
+          }
+        } catch (e) {
+        }
+
+        applyConsent(consent);
+        closeDialog();
+      }
+
+      function openDialog() {
+        const consent = readConsent() || {
+          analytics: false,
+          externalMedia: false
+        };
+
+        analyticsBox.checked = !!consent.analytics;
+        mediaBox.checked = !!consent.externalMedia;
+
+        previousFocus = document.activeElement;
+        overlay.hidden = false;
+        document.body.style.overflow = "hidden";
+
+        setTimeout(function () {
+          dialog.focus();
+        }, 0);
+      }
+
+      function closeDialog() {
+        overlay.hidden = true;
+        document.body.style.overflow = "";
+
+        if (previousFocus && previousFocus.focus) {
+          previousFocus.focus();
+        }
+      }
+
+      function applyConsent(consent) {
+        if (consent.analytics) {
+          loadAnalytics();
+        } else {
+          disableAnalytics();
+        }
+      }
+
+      function loadAnalytics() {
+        if (!GA_ID || analyticsLoaded) return;
+
+        analyticsLoaded = true;
+        window["ga-disable-" + GA_ID] = false;
+
+        const script = document.createElement("script");
+        script.async = true;
+        script.src = "https://www.googletagmanager.com/gtag/js?id=" + encodeURIComponent(GA_ID);
+        document.head.appendChild(script);
+
+        window.dataLayer = window.dataLayer || [];
+
+        window.gtag = window.gtag || function () {
+          dataLayer.push(arguments);
+        };
+
+        gtag("consent", "default", {
+          analytics_storage: "granted",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          ad_personalization: "denied"
+        });
+
+        gtag("js", new Date());
+
+        gtag("config", GA_ID, {
+          allow_google_signals: false,
+          allow_ad_personalization_signals: false
+        });
+      }
+
+      function disableAnalytics() {
+        if (GA_ID) {
+          window["ga-disable-" + GA_ID] = true;
+        }
+
+        if (typeof window.gtag === "function") {
+          gtag("consent", "update", {
+            analytics_storage: "denied",
+            ad_storage: "denied",
+            ad_user_data: "denied",
+            ad_personalization: "denied"
+          });
+        }
+
+        document.cookie.split(";").forEach(function (value) {
+          const name = value.split("=")[0].trim();
+
+          if (
+            name === "_ga" ||
+            name === "_gid" ||
+            name === "_gat" ||
+            name.indexOf("_ga_") === 0 ||
+            name.indexOf("_gat_") === 0
+          ) {
+            document.cookie = name + "=; Max-Age=0; path=/; SameSite=Lax";
+          }
+        });
+      }
+
+      document.getElementById("cookie-accept-all").addEventListener("click", function () {
+        saveConsent(true, true);
+      });
+
+      document.getElementById("cookie-reject-all").addEventListener("click", function () {
+        saveConsent(false, false);
+      });
+
+      document.getElementById("cookie-save-selection").addEventListener("click", function () {
+        saveConsent(analyticsBox.checked, mediaBox.checked);
+      });
+
+      document.getElementById("open-cookie-settings").addEventListener("click", openDialog);
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const consent = readConsent();
+
+        if (consent) {
+          applyConsent(consent);
+        } else {
+          openDialog();
+        }
+      });
+    })();
+  </script>
+
 </body>
 </html>
